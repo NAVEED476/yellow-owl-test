@@ -283,6 +283,43 @@ tr:hover {
   }
  
 }
+@media only screen and (max-width: 750px) {
+  body {
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  .yellow-admin {
+    display:none;
+  }
+  .navbar{
+    padding: 0;
+    width: 97%;
+    padding: 2% 1% 2% 2%;
+  }
+  .header {
+    display: none;
+  }
+  .navbar h4{
+    font-size: 18px;
+  }
+
+  table{
+    width: 90vw;
+  }
+  .tbody-data{
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 16px;
+  }
+ 
+}
+
 
 @media only screen and (max-width: 500px) {
   body {
