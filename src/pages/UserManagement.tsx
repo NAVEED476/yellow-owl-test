@@ -232,6 +232,7 @@ const UserManagement = () => {
               <th className="hide-td">PHONE</th>
               <th className="hide-td">ENROLL NUMBER</th>
               <th className="hide-td">DATE OF ADMISSION</th>
+              <th></th>
             </tr>
           </thead>
           {loader ? (
