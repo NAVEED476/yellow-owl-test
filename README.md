@@ -74,10 +74,7 @@ Ensure you have the following installed:
 
 ## Project Structure
 
-```plaintext
-![image](https://github.com/NAVEED476/yellow-owl-test/assets/95119749/714a6c1b-3da9-491c-a313-f7df59b87948)
-
-```
+![image](https://github.com/NAVEED476/yellow-owl-test/assets/95119749/b3e3e68d-75c6-4199-a43a-f640f899bea9)
 
 ## Acknowledgements
 
