@@ -4,14 +4,13 @@ import { MdDelete } from "react-icons/md";
 
 import "./style.css";
 interface Student {
-    _id: string;
-    name: string;
-    email: string;
-    phone: string;
-    enrollNumber: string;
-    dateOfAdmission: string;
-  }
-  
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  enrollNumber: string;
+  dateOfAdmission: string;
+}
 
 const UserManagement = () => {
   const [students, setStudents] = useState<Student[]>([]);
@@ -50,13 +49,13 @@ const UserManagement = () => {
   };
 
   const fetchStudents = async () => {
-    setLoader(true)
+    setLoader(true);
     try {
       const response = await fetch("https://yellow-owl-backend.vercel.app/api/students/");
       if (response.ok) {
         const data = await response.json();
         setStudents(data);
-        setLoader(false)
+        setLoader(false);
       } else {
         console.log("Fetching students failed");
       }
@@ -66,7 +65,7 @@ const UserManagement = () => {
   };
 
   const handleSubmit = async () => {
-    setLoader(true)
+    setLoader(true);
     try {
       const response = await fetch(
         "https://yellow-owl-backend.vercel.app/api/students/create",
@@ -83,7 +82,6 @@ const UserManagement = () => {
         setStudents([...students, data]);
         setLoader(false);
         handleCloseModal();
-       
       } else {
         console.log("Submission to create new student failed");
       }
@@ -179,8 +177,18 @@ const UserManagement = () => {
 
   useEffect(() => {
     fetchStudents();
-    console.log(editStudent)
+    console.log(editStudent);
   }, []);
+
+  const isFormComplete = () => {
+    return (
+      newStudent.name &&
+      newStudent.email &&
+      newStudent.phone &&
+      newStudent.enrollNumber &&
+      newStudent.dateOfAdmission
+    );
+  };
 
   return (
     <div className="app">
@@ -200,11 +208,11 @@ const UserManagement = () => {
           <h4>Students</h4>
         </div>
         <div className="search-cont">
-          <div>
+          <div className="search-cont-h2">
             <h2>Students</h2>
           </div>
-          <div>
-          <input
+          <div className="searh-btn">
+            <input
               className="search-bar"
               type="text"
               placeholder="Search..."
@@ -218,51 +226,55 @@ const UserManagement = () => {
         </div>
         <table>
           <thead>
-            <tr>
+            <tr className="th-names">
               <th>NAME</th>
-              <th>EMAIL</th>
-              <th>PHONE</th>
-              <th>ENROLL NUMBER</th>
-              <th>DATE OF ADMISSION</th>
-              <th></th>
+              <th className="hide-td">EMAIL</th>
+              <th className="hide-td">PHONE</th>
+              <th className="hide-td">ENROLL NUMBER</th>
+              <th className="hide-td">DATE OF ADMISSION</th>
             </tr>
           </thead>
-         {loader ? <div className="loader">
-          <h1 >loading...!</h1>
-         </div> : <tbody>
-            {filteredStudents.map((student, index) => (
-              <tr key={index}>
-                <td
-                  style={{
-                    display: "flex",
-                    alignContent: "center",
-                    justifyContent: "flex-start",
-                    alignItems: "center",
-                  }}
-                >
-                  <div className="admin-profile">
-                    <img src="" alt="" />
-                  </div>
-                  {student.name}
-                </td>
-                <td>{student.email}</td>
-                <td>{student.phone}</td>
-                <td>{student.enrollNumber}</td>
-                <td>{student.dateOfAdmission}</td>
-                <td>
-                  <button
-                    className="edit"
-                    onClick={() => handleEditStudent(student)}
+          {loader ? (
+            <div className="loader">
+              <h1>loading...!</h1>
+            </div>
+          ) : (
+            <tbody className="tbody-data">
+              {filteredStudents.map((student, index) => (
+                <tr key={index} className="tr-data">
+                  <td
+                    className="td-data"
+                    style={{
+                      display: "flex",
+                      alignContent: "center",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
                   >
-                    <FaEdit className="edit" />
-                  </button>
-                  <button onClick={() => handleDeleteStudent(student)}>
-                    <MdDelete className="delete-icon" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>}
+                    <div className="admin-profile">
+                      <img src="" alt="" />
+                    </div>
+                    {student.name}
+                  </td>
+                  <td className="hide-td">{student.email}</td>
+                  <td className="hide-td">{student.phone}</td>
+                  <td className="hide-td">{student.enrollNumber}</td>
+                  <td className="hide-td">{student.dateOfAdmission}</td>
+                  <td>
+                    <button
+                      className="edit"
+                      onClick={() => handleEditStudent(student)}
+                    >
+                      <FaEdit className="edit" />
+                    </button>
+                    <button onClick={() => handleDeleteStudent(student)}>
+                      <MdDelete className="delete-icon" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </main>
 
@@ -299,14 +311,14 @@ const UserManagement = () => {
               onChange={handleInputChange}
             />
             <input
-              type="text"
+              type="date"
               name="dateOfAdmission"
               placeholder="Date of Admission"
               value={newStudent.dateOfAdmission}
               onChange={handleInputChange}
             />
             <div className="modal-buttons">
-              <button className="submit" onClick={handleSubmit}>
+              <button className="submit" onClick={handleSubmit} disabled={!isFormComplete()}>
                 Submit
               </button>
               <button className="cancel" onClick={handleCloseModal}>
@@ -350,14 +362,14 @@ const UserManagement = () => {
               onChange={handleInputChange}
             />
             <input
-              type="text"
+              type="date"
               name="dateOfAdmission"
               placeholder="Date of Admission"
               value={newStudent.dateOfAdmission}
               onChange={handleInputChange}
             />
             <div className="modal-buttons">
-              <button className="submit" onClick={handleUpdateStudent}>
+              <button className="submit" onClick={handleUpdateStudent} disabled={!isFormComplete()}>
                 Submit
               </button>
               <button className="cancel" onClick={handleCloseModal}>
