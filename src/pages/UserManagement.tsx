@@ -29,6 +29,7 @@ const UserManagement = () => {
   const [editStudent, setEditStudent] = useState<Student | null>(null);
   const [studentToDelete, setStudentToDelete] = useState<Student | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [loader, setLoader] = useState(false);
 
   const handleAddNewStudent = () => {
     setShowAddModal(true);
@@ -49,11 +50,13 @@ const UserManagement = () => {
   };
 
   const fetchStudents = async () => {
+    setLoader(true)
     try {
       const response = await fetch("https://yellow-owl-backend.vercel.app/api/students/");
       if (response.ok) {
         const data = await response.json();
         setStudents(data);
+        setLoader(false)
       } else {
         console.log("Fetching students failed");
       }
@@ -63,6 +66,7 @@ const UserManagement = () => {
   };
 
   const handleSubmit = async () => {
+    setLoader(true)
     try {
       const response = await fetch(
         "https://yellow-owl-backend.vercel.app/api/students/create",
@@ -77,7 +81,9 @@ const UserManagement = () => {
       if (response.ok) {
         const data = await response.json();
         setStudents([...students, data]);
+        setLoader(false);
         handleCloseModal();
+       
       } else {
         console.log("Submission to create new student failed");
       }
@@ -96,6 +102,7 @@ const UserManagement = () => {
   };
 
   const handleUpdateStudent = async () => {
+    setLoader(true);
     try {
       if (newStudent) {
         const response = await fetch(
@@ -115,6 +122,7 @@ const UserManagement = () => {
           );
           setStudents(updatedStudents);
           handleCloseModal();
+          setLoader(false);
         } else {
           console.log("Update operation failed");
         }
@@ -130,6 +138,7 @@ const UserManagement = () => {
   };
 
   const handleConfirmDelete = async () => {
+    setLoader(true);
     try {
       if (studentToDelete) {
         const response = await fetch(
@@ -145,6 +154,7 @@ const UserManagement = () => {
           setStudents(updatedStudents);
           setShowDeleteModal(false);
           setStudentToDelete(null);
+          setLoader(false);
         } else {
           console.log("Error during delete:", response.statusText);
         }
@@ -217,7 +227,9 @@ const UserManagement = () => {
               <th></th>
             </tr>
           </thead>
-          <tbody>
+         {loader ? <div className="loader">
+          <h1 >loading...!</h1>
+         </div> : <tbody>
             {filteredStudents.map((student, index) => (
               <tr key={index}>
                 <td
@@ -250,7 +262,7 @@ const UserManagement = () => {
                 </td>
               </tr>
             ))}
-          </tbody>
+          </tbody>}
         </table>
       </main>
 

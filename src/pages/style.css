@@ -219,6 +219,14 @@ tr:hover {
   cursor: pointer;
 }
 
+.loader{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 
 @media only screen and (max-width: 950px) {
   body {
