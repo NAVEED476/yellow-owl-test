@@ -1,46 +1,85 @@
-# Getting Started with Create React App
+# User Management System
+![image](https://github.com/NAVEED476/yellow-owl-test/assets/95119749/b45f54c7-1356-44a7-b3ed-ec20049b7404)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This project is a User Management System built with React. It allows administrators to manage a list of students by adding, editing, and deleting student records. The application fetches student data from an API, provides search functionality, and offers a smooth user experience with the help of `react-icons` for icons and CSS for styling.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Acknowledgements](#acknowledgements)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Fetch and display a list of students.
+- Add new students to the list.
+- ![image](https://github.com/NAVEED476/yellow-owl-test/assets/95119749/d9af594a-69f4-47b5-bfc1-da0d0ec32588)
 
-### `npm test`
+- Edit existing student details.
+- ![image](https://github.com/NAVEED476/yellow-owl-test/assets/95119749/e0355181-db80-4dfc-9a85-d983056ecbba)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Delete students from the list.
+- ![image](https://github.com/NAVEED476/yellow-owl-test/assets/95119749/0303b06c-9ad0-4cd6-8765-73c8b987793d)
 
-### `npm run build`
+- Search functionality to filter students by name.
+- Smooth animations and user-friendly UI.
+- Loader animation during API calls.
+- Modal windows for add, edit, and delete actions.
+- Icons for edit and delete actions using `react-icons`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Follow these instructions to set up and run the project locally.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+Ensure you have the following installed:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Node.js (>=12.x)
+- npm (>=6.x)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone the repository:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```sh
+   git clone https://github.com/NAVEED476/yellow-owl-test.git
+   cd my-app
+   ```
 
-## Learn More
+2. Install dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```sh
+   npm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Start the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+### Usage
+
+- **Fetch Students**: The application automatically fetches a list of students when it starts.
+- **Add New Student**: Click the "ADD NEW STUDENT" button and fill out the form to add a new student.
+- **Edit Student**: Click the edit icon next to a student to edit their details.
+- **Delete Student**: Click the delete icon next to a student to remove them from the list.
+- **Search Students**: Use the search bar to filter students by name.
+
+## Project Structure
+
+![image](https://github.com/NAVEED476/yellow-owl-test/assets/95119749/b3e3e68d-75c6-4199-a43a-f640f899bea9)
+
+## Acknowledgements
+
+- [React](https://reactjs.org/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+This README provides a comprehensive guide to understanding and using the User Management System application.
