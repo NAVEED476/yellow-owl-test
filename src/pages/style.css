@@ -44,6 +44,9 @@
 .main {
   padding: 20px 0px;
   flex-grow: 1;
+  height: 96.7vh;
+  overflow: auto;
+  overflow-y: hidden;
 }
 
 .navbar {
@@ -220,7 +223,7 @@ tr:hover {
   cursor: pointer;
 }
 
-.loader{
+.loader {
   text-align: center;
   display: flex;
   align-items: center;
@@ -228,22 +231,18 @@ tr:hover {
   width: 100%;
 }
 
-.tbody-data{
+.tbody-data {
   height: 60vh;
   overflow: auto;
   overflow-y: scroll;
   width: 82vw;
 }
-
-.td-data{
-  /* width: 300px; */
-}
-.th-names th{
+.th-names th {
   width: 200px;
   text-align: center;
   margin-left: -20px;
 }
-.tr-data td{
+.tr-data td {
   width: 200px;
   text-align: center;
 }
@@ -254,9 +253,9 @@ tr:hover {
     overflow-y: hidden;
   }
   .yellow-admin {
-    display:none;
+    display: none;
   }
-  .navbar{
+  .navbar {
     padding: 0;
     width: 97%;
     padding: 2% 1% 2% 2%;
@@ -264,14 +263,14 @@ tr:hover {
   .header {
     display: none;
   }
-  .navbar h4{
+  .navbar h4 {
     font-size: 18px;
   }
 
-  table{
+  table {
     width: 100vw;
   }
-  .tbody-data{
+  .tbody-data {
     width: 95vw;
   }
   .modal-content {
@@ -282,10 +281,9 @@ tr:hover {
     width: 80%;
     border-radius: 16px;
   }
-  .hide-td1{
+  .hide-td1 {
     display: none;
   }
- 
 }
 @media only screen and (max-width: 770px) {
   body {
@@ -294,9 +292,9 @@ tr:hover {
     overflow-y: hidden;
   }
   .yellow-admin {
-    display:none;
+    display: none;
   }
-  .navbar{
+  .navbar {
     padding: 0;
     width: 97%;
     padding: 2% 1% 2% 2%;
@@ -304,14 +302,14 @@ tr:hover {
   .header {
     display: none;
   }
-  .navbar h4{
+  .navbar h4 {
     font-size: 18px;
   }
 
   table {
     width: 95vw;
-}
-  .tbody-data{
+  }
+  .tbody-data {
     width: 94vw;
   }
   .modal-content {
@@ -322,13 +320,12 @@ tr:hover {
     width: 80%;
     border-radius: 16px;
   }
-  tbody{
+  tbody {
     width: 95vw;
   }
-  .hide-td1{
+  .hide-td1 {
     display: none;
   }
- 
 }
 @media only screen and (max-width: 700px) {
   body {
@@ -337,9 +334,9 @@ tr:hover {
     overflow-y: hidden;
   }
   .yellow-admin {
-    display:none;
+    display: none;
   }
-  .navbar{
+  .navbar {
     padding: 0;
     width: 99%;
     padding: 2% 1% 2% 2%;
@@ -347,14 +344,14 @@ tr:hover {
   .header {
     display: none;
   }
-  .navbar h4{
+  .navbar h4 {
     font-size: 18px;
   }
 
-  table{
+  table {
     width: 100vw;
   }
-  .tbody-data{
+  .tbody-data {
     width: 94vw;
   }
   .modal-content {
@@ -362,11 +359,9 @@ tr:hover {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width:100%;
+    width: 100%;
     border-radius: 16px;
   }
- 
- 
 }
 
 @media only screen and (max-width: 500px) {
@@ -377,9 +372,9 @@ tr:hover {
     height: 100vh;
   }
   .yellow-admin {
-    display:none;
+    display: none;
   }
-  .navbar{
+  .navbar {
     padding: 0;
     width: 97%;
     padding: 2% 1% 2% 2%;
@@ -387,38 +382,34 @@ tr:hover {
   .header {
     display: none;
   }
-  .navbar h4{
+  .navbar h4 {
     font-size: 18px;
   }
   .search-bar {
     width: 100px;
   }
   .add-new-btn {
-   
     border-radius: 4px;
     font-size: 12px;
     cursor: pointer;
   }
-  .search-cont-h2{
+  .search-cont-h2 {
     display: none;
   }
-  .searh-btn
-  {
+  .searh-btn {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  table{
+  table {
     width: 90vw;
     overflow: hidden;
   }
-  .tbody-data{
+  .tbody-data {
     overflow: hidden;
   }
- 
-  .hide-td{
+
+  .hide-td {
     display: none;
   }
 }
-
-

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-
+import Header from "../components/Header";
+import StudentTable from "../components/StudentTable";
+import SearchBar from "../components/SearchBar";
+import StudentForm from "../components/StudentForm";
+import DeleteConfirmation from "../components/DeleteConfirmation";
 import "./style.css";
+
 interface Student {
   _id: string;
   name: string;
@@ -30,6 +33,39 @@ const UserManagement = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loader, setLoader] = useState(false);
 
+  const fetchStudents = async (query: string) => {
+    setLoader(true);
+    try {
+      const response = await fetch(`http://localhost:7000/api/students${query}`);
+      if (response.ok) {
+        const data = await response.json();
+        setStudents(data);
+      } else {
+        console.log("Fetching students failed");
+      }
+    } catch (error) {
+      console.error("Error fetching students:", error);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStudents("");
+  }, []);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value;
+    let query = '';
+
+    if (searchValue) {
+      query = `?name=${searchValue}`;
+    }
+
+    setSearchQuery(searchValue);
+    fetchStudents(query);
+  };
+
   const handleAddNewStudent = () => {
     setShowAddModal(true);
   };
@@ -48,27 +84,11 @@ const UserManagement = () => {
     setEditStudent(null);
   };
 
-  const fetchStudents = async () => {
-    setLoader(true);
-    try {
-      const response = await fetch("https://yellow-owl-backend.vercel.app/api/students/");
-      if (response.ok) {
-        const data = await response.json();
-        setStudents(data);
-        setLoader(false);
-      } else {
-        console.log("Fetching students failed");
-      }
-    } catch (error) {
-      console.error("Error fetching students:", error);
-    }
-  };
-
   const handleSubmit = async () => {
     setLoader(true);
     try {
       const response = await fetch(
-        "https://yellow-owl-backend.vercel.app/api/students/create",
+        "http://localhost:7000/api/students/create",
         {
           method: "POST",
           headers: {
@@ -80,13 +100,14 @@ const UserManagement = () => {
       if (response.ok) {
         const data = await response.json();
         setStudents([...students, data]);
-        setLoader(false);
         handleCloseModal();
       } else {
         console.log("Submission to create new student failed");
       }
     } catch (error) {
       console.error("Error adding student:", error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -104,7 +125,7 @@ const UserManagement = () => {
     try {
       if (newStudent) {
         const response = await fetch(
-          `https://yellow-owl-backend.vercel.app/api/students/update/${newStudent._id}`,
+          `http://localhost:7000/api/students/update/${newStudent._id}`,
           {
             method: "PUT",
             headers: {
@@ -120,13 +141,14 @@ const UserManagement = () => {
           );
           setStudents(updatedStudents);
           handleCloseModal();
-          setLoader(false);
         } else {
           console.log("Update operation failed");
         }
       }
     } catch (error) {
       console.error("Error updating student:", error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -140,7 +162,7 @@ const UserManagement = () => {
     try {
       if (studentToDelete) {
         const response = await fetch(
-          `https://yellow-owl-backend.vercel.app/api/students/delete/${studentToDelete._id}`,
+          `http://localhost:7000/api/students/delete/${studentToDelete._id}`,
           {
             method: "DELETE",
           }
@@ -152,13 +174,14 @@ const UserManagement = () => {
           setStudents(updatedStudents);
           setShowDeleteModal(false);
           setStudentToDelete(null);
-          setLoader(false);
         } else {
           console.log("Error during delete:", response.statusText);
         }
       }
     } catch (error) {
       console.error("Error deleting student:", error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -167,234 +190,51 @@ const UserManagement = () => {
     setStudentToDelete(null);
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const filteredStudents = students.filter((student) =>
-    student.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  useEffect(() => {
-    fetchStudents();
-    console.log(editStudent);
-  }, []);
-
   const isFormComplete = () => {
     return (
-      newStudent.name.trim().length !==0 &&
-      newStudent.email.trim().length !==0  &&
-      newStudent.phone.trim().length !==0  &&
-      newStudent.enrollNumber.trim().length !==0  &&
-      newStudent.dateOfAdmission.trim().length !==0 
+      newStudent.name.trim().length !== 0 &&
+      newStudent.email.trim().length !== 0 &&
+      newStudent.phone.trim().length !== 0 &&
+      newStudent.enrollNumber.trim().length !== 0 &&
+      newStudent.dateOfAdmission.trim().length !== 0
     );
   };
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="yellow-admin">
-          <div className="admin-profile">
-            <img src="" alt="" />
-          </div>
-          <div>
-            <p className="admin-name">Yello Owl</p>
-            <p className="desig">Admin</p>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="main">
         <div className="navbar">
           <h4>Students</h4>
         </div>
-        <div className="search-cont">
-          <div className="search-cont-h2">
-            <h2>Students</h2>
-          </div>
-          <div className="searh-btn">
-            <input
-              className="search-bar"
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-            <button className="add-new-btn" onClick={handleAddNewStudent}>
-              ADD NEW STUDENT
-            </button>
-          </div>
-        </div>
-        <table>
-          <thead>
-            <tr className="th-names">
-              <th>NAME</th>
-              <th className="hide-td ">EMAIL</th>
-              <th className="hide-td">PHONE</th>
-              <th className="hide-td hide-td1">ENROLL NUMBER</th>
-              <th className="hide-td hide-td1">DATE OF ADMISSION</th>
-              <th></th>
-            </tr>
-          </thead>
-          {loader ? (
-            <div className="loader">
-              <h1>loading...!</h1>
-            </div>
-          ) : (
-            <tbody className="tbody-data">
-              {filteredStudents.map((student, index) => (
-                <tr key={index} className="tr-data">
-                  <td
-                    className="td-data"
-                    style={{
-                      display: "flex",
-                      alignContent: "center",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div className="admin-profile">
-                      <img src="" alt="" />
-                    </div>
-                    {student.name}
-                  </td>
-                  <td className="hide-td">{student.email}</td>
-                  <td className="hide-td">{student.phone}</td>
-                  <td className="hide-td hide-td1">{student.enrollNumber}</td>
-                  <td className="hide-td hide-td1">{student.dateOfAdmission}</td>
-                  <td>
-                    <button
-                      className="edit"
-                      onClick={() => handleEditStudent(student)}
-                    >
-                      <FaEdit className="edit" />
-                    </button>
-                    <button onClick={() => handleDeleteStudent(student)}>
-                      <MdDelete className="delete-icon" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          )}
-        </table>
+        <SearchBar
+          searchQuery={searchQuery}
+          handleSearchChange={handleSearchChange}
+          handleAddNewStudent={handleAddNewStudent}
+        />
+        <StudentTable
+          students={students}
+          loader={loader}
+          handleEditStudent={handleEditStudent}
+          handleDeleteStudent={handleDeleteStudent}
+        />
       </main>
 
-      {showAddModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Add New Student</h2>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={newStudent.name}
-              onChange={handleInputChange}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={newStudent.email}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={newStudent.phone}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="enrollNumber"
-              placeholder="Enroll Number"
-              value={newStudent.enrollNumber}
-              onChange={handleInputChange}
-            />
-            <input
-              type="date"
-              name="dateOfAdmission"
-              placeholder="Date of Admission"
-              value={newStudent.dateOfAdmission}
-              onChange={handleInputChange}
-            />
-            <div className="modal-buttons">
-              <button className="submit" onClick={handleSubmit} disabled={!isFormComplete()}>
-                Submit
-              </button>
-              <button className="cancel" onClick={handleCloseModal}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showEditModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Edit Student</h2>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={newStudent.name}
-              onChange={handleInputChange}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={newStudent.email}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={newStudent.phone}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="enrollNumber"
-              placeholder="Enroll Number"
-              value={newStudent.enrollNumber}
-              onChange={handleInputChange}
-            />
-            <input
-              type="date"
-              name="dateOfAdmission"
-              placeholder="Date of Admission"
-              value={newStudent.dateOfAdmission}
-              onChange={handleInputChange}
-            />
-            <div className="modal-buttons">
-              <button className="submit" onClick={handleUpdateStudent} disabled={!isFormComplete()}>
-                Submit
-              </button>
-              <button className="cancel" onClick={handleCloseModal}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
+      {(showAddModal || showEditModal) && (
+        <StudentForm
+          student={newStudent}
+          handleInputChange={handleInputChange}
+          handleSubmit={showAddModal ? handleSubmit : handleUpdateStudent}
+          handleCloseModal={handleCloseModal}
+          isFormComplete={isFormComplete()}
+        />
       )}
 
       {showDeleteModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Are you sure to delete this student?</h2>
-            <div className="modal-buttons">
-              <button className="submit" onClick={handleConfirmDelete}>
-                Yes
-              </button>
-              <button className="cancel" onClick={handleCancelDelete}>
-                No
-              </button>
-            </div>
-          </div>
-        </div>
+        <DeleteConfirmation
+          handleConfirmDelete={handleConfirmDelete}
+          handleCancelDelete={handleCancelDelete}
+        />
       )}
     </div>
   );
