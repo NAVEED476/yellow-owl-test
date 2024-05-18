@@ -182,11 +182,11 @@ const UserManagement = () => {
 
   const isFormComplete = () => {
     return (
-      newStudent.name &&
-      newStudent.email &&
-      newStudent.phone &&
-      newStudent.enrollNumber &&
-      newStudent.dateOfAdmission
+      newStudent.name.trim().length !==0 &&
+      newStudent.email.trim().length !==0  &&
+      newStudent.phone.trim().length !==0  &&
+      newStudent.enrollNumber.trim().length !==0  &&
+      newStudent.dateOfAdmission.trim().length !==0 
     );
   };
 
@@ -228,10 +228,10 @@ const UserManagement = () => {
           <thead>
             <tr className="th-names">
               <th>NAME</th>
-              <th className="hide-td">EMAIL</th>
+              <th className="hide-td ">EMAIL</th>
               <th className="hide-td">PHONE</th>
-              <th className="hide-td">ENROLL NUMBER</th>
-              <th className="hide-td">DATE OF ADMISSION</th>
+              <th className="hide-td hide-td1">ENROLL NUMBER</th>
+              <th className="hide-td hide-td1">DATE OF ADMISSION</th>
               <th></th>
             </tr>
           </thead>
@@ -259,8 +259,8 @@ const UserManagement = () => {
                   </td>
                   <td className="hide-td">{student.email}</td>
                   <td className="hide-td">{student.phone}</td>
-                  <td className="hide-td">{student.enrollNumber}</td>
-                  <td className="hide-td">{student.dateOfAdmission}</td>
+                  <td className="hide-td hide-td1">{student.enrollNumber}</td>
+                  <td className="hide-td hide-td1">{student.dateOfAdmission}</td>
                   <td>
                     <button
                       className="edit"
