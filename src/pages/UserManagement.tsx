@@ -50,21 +50,17 @@ const UserManagement = () => {
     }
   };
 
-  useEffect(() => {
-    fetchStudents("");
-  }, []);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = e.target.value;
-    let query = '';
-
-    if (searchValue) {
-      query = `?name=${searchValue}`;
-    }
-
     setSearchQuery(searchValue);
-    fetchStudents(query);
   };
+
+  useEffect(() => {
+    const query = searchQuery ? `?search=${searchQuery}` : "";
+    fetchStudents(query);
+  }, [searchQuery]);
+
 
   const handleAddNewStudent = () => {
     setShowAddModal(true);
