@@ -423,7 +423,7 @@ tr:hover {
     font-size: 18px;
   }
   .search-bar {
-    width: 100px;
+    width: 160px;
   }
   .add-new-btn {
     border-radius: 4px;
@@ -442,10 +442,14 @@ tr:hover {
     width: 90vw;
   }
   .tbody-data {
-    overflow: hidden;
+    overflow: auto;
+    overflow-y: scroll;
   }
 
   .hide-td {
     display: none;
+  }
+  .search-cont{
+    margin-left: 30px;
   }
 }

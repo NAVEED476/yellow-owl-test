@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../pages/style.css";
 interface SearchBarProps {
   searchQuery: string;
   handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

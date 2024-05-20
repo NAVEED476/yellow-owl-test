@@ -1,6 +1,7 @@
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import "../pages/style.css";
 
 interface Student {
   _id: string;

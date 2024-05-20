@@ -1,4 +1,5 @@
 import React from "react";
+import "../pages/style.css";
 
 interface StudentFormProps {
   student: {
