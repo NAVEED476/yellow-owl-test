@@ -199,6 +199,9 @@ tr:hover {
 
 .modal-buttons {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
   justify-content: center;
   align-items: center;
   gap: 30px;
@@ -213,6 +216,7 @@ tr:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 20vw;
 }
 
 .cancel {
@@ -222,6 +226,7 @@ tr:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 20vw;
 }
 
 .loader {
