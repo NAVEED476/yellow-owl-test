@@ -127,7 +127,7 @@ td {
 }
 td {
   padding: 2px;
-  width: 192px;
+  width: 220px;
 }
 
 th {
@@ -269,19 +269,58 @@ tr:hover {
 }
 
 .tbody-data {
-  height: 60vh;
+  height: 70vh;
   overflow: auto;
   overflow-y: scroll;
   width: 82vw;
 }
 .th-names th {
-  /* width: 200px; */
+  width: 200px;
   /* text-align: center; */
   margin-left: -10px;
 }
 .tr-data td {
-  width: 200px;
+  /* width: 200px; */
   text-align: center;
+}
+@media only screen and (max-width: 920px) {
+  body {
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  .yellow-admin {
+    display: none;
+  }
+  .navbar {
+    padding: 0;
+    width: 97%;
+    padding: 2% 1% 2% 2%;
+  }
+  .header {
+    display: none;
+  }
+  .navbar h4 {
+    font-size: 18px;
+  }
+
+  table {
+    width: 100vw;
+  }
+  .tbody-data {
+    width: 95vw;
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 16px;
+  }
+  .hide-td1 {
+    display: none;
+  }
 }
 @media only screen and (max-width: 820px) {
   body {
@@ -362,6 +401,9 @@ tr:hover {
   }
   .hide-td1 {
     display: none;
+  }
+  td{
+    width: 180px;
   }
 }
 @media only screen and (max-width: 700px) {
@@ -452,12 +494,4 @@ tr:hover {
   .search-cont{
     margin-left: 30px;
   }
-  .submit {
-    width: 50vw;
-  }
-  .cancel{
-    width: 50vw;
-    margin-bottom: 10px;
-  }
 }
-
