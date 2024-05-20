@@ -127,7 +127,7 @@ td {
 }
 td {
   padding: 2px;
-  width: 180px;
+  width: 192px;
 }
 
 th {
@@ -275,7 +275,7 @@ tr:hover {
   width: 82vw;
 }
 .th-names th {
-  width: 200px;
+  /* width: 200px; */
   /* text-align: center; */
   margin-left: -10px;
 }
@@ -452,4 +452,12 @@ tr:hover {
   .search-cont{
     margin-left: 30px;
   }
+  .submit {
+    width: 50vw;
+  }
+  .cancel{
+    width: 50vw;
+    margin-bottom: 10px;
+  }
 }
+
