@@ -19,7 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       <input
         className="search-bar"
         type="text"
-        placeholder="Search by enroll number, email, or name..."
+        placeholder="Search by name..."
         value={searchQuery}
         onChange={handleSearchChange}
       />
