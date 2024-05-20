@@ -19,6 +19,11 @@ interface StudentTableProps {
   handleDeleteStudent: (student: Student) => void;
 }
 
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+};
+
 const StudentTable: React.FC<StudentTableProps> = ({
   students,
   loader,
@@ -61,7 +66,9 @@ const StudentTable: React.FC<StudentTableProps> = ({
             <td className="hide-td">{student.email}</td>
             <td className="hide-td">{student.phone}</td>
             <td className="hide-td hide-td1">{student.enrollNumber}</td>
-            <td className="hide-td hide-td1">{student.dateOfAdmission}</td>
+            <td className="hide-td hide-td1">
+              {formatDate(student.dateOfAdmission)}
+            </td>
             <td>
               <button className="edit" onClick={() => handleEditStudent(student)}>
                 <FaEdit className="edit" />
