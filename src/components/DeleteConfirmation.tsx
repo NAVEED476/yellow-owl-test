@@ -12,11 +12,11 @@ const DeleteConfirmation: React.FC<DeleteConfirmationProps> = ({
   <div className="modal">
     <div className="modal-content">
       <h2>Are you sure you want to delete this student?</h2>
-      <div className="modal-buttons">
-        <button className="submit" onClick={handleConfirmDelete}>
+      <div className="modal-buttons1">
+        <button className="submit1" onClick={handleConfirmDelete}>
           Yes
         </button>
-        <button className="cancel" onClick={handleCancelDelete}>
+        <button className="cancel1" onClick={handleCancelDelete}>
           No
         </button>
       </div>
