@@ -276,8 +276,8 @@ tr:hover {
 }
 .th-names th {
   width: 200px;
-  text-align: center;
-  margin-left: -20px;
+  /* text-align: center; */
+  margin-left: -10px;
 }
 .tr-data td {
   width: 200px;
