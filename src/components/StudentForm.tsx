@@ -32,6 +32,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
         placeholder="Name"
         value={student.name}
         onChange={handleInputChange}
+        required
       />
       <input
         type="email"
@@ -39,13 +40,15 @@ const StudentForm: React.FC<StudentFormProps> = ({
         placeholder="Email"
         value={student.email}
         onChange={handleInputChange}
+        required
       />
       <input
-        type="text"
+        type="number"
         name="phone"
         placeholder="Phone"
         value={student.phone}
         onChange={handleInputChange}
+        required
       />
       <input
         type="text"
@@ -53,6 +56,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
         placeholder="Enroll Number"
         value={student.enrollNumber}
         onChange={handleInputChange}
+        required
       />
       <input
         type="date"
@@ -60,6 +64,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
         placeholder="Date of Admission"
         value={student.dateOfAdmission}
         onChange={handleInputChange}
+        required
       />
       <div className="modal-buttons">
         <button className="submit" onClick={handleSubmit} disabled={!isFormComplete}>
