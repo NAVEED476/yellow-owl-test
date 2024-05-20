@@ -440,7 +440,6 @@ tr:hover {
   }
   table {
     width: 90vw;
-    overflow: hidden;
   }
   .tbody-data {
     overflow: hidden;

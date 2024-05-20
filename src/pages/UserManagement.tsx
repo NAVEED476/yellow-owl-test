@@ -36,7 +36,7 @@ const UserManagement = () => {
   const fetchStudents = async (query: string) => {
     setLoader(true);
     try {
-      const response = await fetch(`http://localhost:7000/api/students${query}`);
+      const response = await fetch(`https://yellow-owl-backend.vercel.app/api/students${query}`);
       if (response.ok) {
         const data = await response.json();
         setStudents(data);
@@ -84,7 +84,7 @@ const UserManagement = () => {
     setLoader(true);
     try {
       const response = await fetch(
-        "http://localhost:7000/api/students/create",
+        "https://yellow-owl-backend.vercel.app/api/students/create",
         {
           method: "POST",
           headers: {
@@ -121,7 +121,7 @@ const UserManagement = () => {
     try {
       if (newStudent) {
         const response = await fetch(
-          `http://localhost:7000/api/students/update/${newStudent._id}`,
+          `https://yellow-owl-backend.vercel.app/api/students/update/${newStudent._id}`,
           {
             method: "PUT",
             headers: {
@@ -158,7 +158,7 @@ const UserManagement = () => {
     try {
       if (studentToDelete) {
         const response = await fetch(
-          `http://localhost:7000/api/students/delete/${studentToDelete._id}`,
+          `https://yellow-owl-backend.vercel.app/api/students/delete/${studentToDelete._id}`,
           {
             method: "DELETE",
           }
